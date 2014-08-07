@@ -10,7 +10,7 @@
     <call target="Build" />
     <call target="CreateOutputFolder"/>
     <call target="CreateNugetPackage" />
-    <!--<call target="PushNugetPackage" />-->
+    <call target="PushNugetPackage" />
   </target>
 
   <target name="SqueakyClean" description="removes all generated files" workingdir="C:\Development\EncentivizeSDK\.." >
@@ -75,8 +75,7 @@
   <target name="PushNugetPackage" >
     <exec program="..\.nuget\nuget.exe">
       <arg value="push" />
-      <arg value="-source" />
-      <arg value="..\Output\" />
+      <arg value="..\Output\Entelect.Encentivize.Sdk.${Version}.nupkg" />
     </exec>
   </target>  
   
