@@ -8,6 +8,7 @@
     <call target="SqueakyClean" />
     <call target="Version" />
     <call target="Build" />
+    <call target="CreateOutputFolder"/>
     <call target="CreateNugetPackage" />
   </target>
 
@@ -49,13 +50,19 @@
       <arg value="..\Entelect.Encentivize.Sdk.sln" />
     </exec>
   </target>
-  
+
+  <target name="CreateOutputFolder" failonerror="false" >
+    <mkdir dir="..\Output" />
+  </target>
+
   <target name="CreateNugetPackage" >
     <exec program="..\.nuget\nuget.exe">
       <arg value="pack" />
       <arg value="C:\Development\EncentivizeSDK\src\Entelect.Encentivize.Sdk\Entelect.Encentivize.Sdk.csproj" />
       <arg value="-Prop" />
       <arg value="Configuration=${buildconfiguration}" />
+      <arg value="-OutputDirectory" />
+      <arg value="..\Output\" />
     </exec>
   </target>
 
