@@ -7,13 +7,11 @@ using Entelect.Encentivize.Sdk.Dto;
 
 namespace Entelect.Encentivize.Sdk
 {
-    public class EncentivizeClient : IEncentivizeClient
+    public class MemberClient : EncentivizeClientBase, IEncentivizeClient
     {
-        EncentivizeSettings Settings { get; set; }
-
-        public EncentivizeClient(EncentivizeSettings settings)
+        public MemberClient(EncentivizeSettings settings)
+            :base(settings)
         {
-            Settings = settings;
         }
 
         #region Members
@@ -72,8 +70,6 @@ namespace Entelect.Encentivize.Sdk
 
             return response.Data;
         }
-
-
 
         public void UpdateMember(MemberInput member, long encentivizeMemberId)
         {
@@ -136,7 +132,6 @@ namespace Entelect.Encentivize.Sdk
 
         #region Groups
 
-
         public List<MemberGroup> GetGroups()
         {
             var client = GetClient();
@@ -145,7 +140,6 @@ namespace Entelect.Encentivize.Sdk
             var response = client.Execute<PagedResult<MemberGroup>>(request);
             return response.Data.Data;
         }
-
 
         public MemberGroupDetails AddGroup(MemberGroup memberGroup)
         {
@@ -189,7 +183,6 @@ namespace Entelect.Encentivize.Sdk
             request.RequestFormat = DataFormat.Json;
             var response = client.Execute<PagedResult<MemberGroup>>(request);
         }
-
 
         public List<Member> GetMembersInGroup(int groupId)
         {
@@ -239,8 +232,6 @@ namespace Entelect.Encentivize.Sdk
                 throw new CreationFailedException(response.Content); 
 
         }
-
-
 
         #region Achievements
 
@@ -296,14 +287,7 @@ namespace Entelect.Encentivize.Sdk
 
         }
 
-        #endregion 
-
-        private RestClient GetClient()
-        {
-            var client = new RestClient(Settings.BaseUrl);
-            client.Authenticator = new HttpBasicAuthenticator(Settings.Username, Settings.Password);
-            return client;
-        }
+        #endregion
     }
 
 

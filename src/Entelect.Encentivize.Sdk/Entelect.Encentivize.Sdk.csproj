@@ -61,7 +61,8 @@
     <Compile Include="Dto\MemberType.cs" />
     <Compile Include="Dto\MemberUpdate.cs" />
     <Compile Include="Dto\PagedResult.cs" />
-    <Compile Include="EncentivizeClient.cs" />
+    <Compile Include="MemberClient.cs" />
+    <Compile Include="EncentivizeClientBase.cs" />
     <Compile Include="EncentivizeSettings.cs" />
     <Compile Include="Exceptions\CreationFailedException.cs" />
     <Compile Include="Exceptions\DataRetrievalFailedException.cs" />
