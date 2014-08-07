@@ -7,7 +7,7 @@
     <authors>$author$</authors>
     <owners>Entelect</owners>
     <projectUrl>http://www.encentivize.co.za/</projectUrl>
-    <iconUrl>http://www.encentivize.co.za/favicon.ico</iconUrl>
+    <iconUrl>https://encentivize.blob.core.windows.net/2-cms/EncentivizeLogoBlue.jpg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright © 2013</copyright>
