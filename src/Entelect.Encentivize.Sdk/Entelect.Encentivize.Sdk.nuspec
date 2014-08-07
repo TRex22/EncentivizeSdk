@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Entelect.Encentivize.Sdk</id>
+    <version>"0.1.1.0"</version>
+    <title>Entelect.Encentivize.Sdk</title>
+    <authors>Entelect</authors>
+    <owners>Entelect</owners>
+    <projectUrl>http://www.encentivize.co.za/</projectUrl>
+    <iconUrl>http://www.encentivize.co.za/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library </description>
+    <copyright>Copyright © 2013</copyright>
+    <tags>Entelect Encentivize Sdk</tags>
+    <dependencies>
+      <dependency id="NLog" version="2.0.0.2000" />
+      <dependency id="RestSharp" version="104.2.0" />
+    </dependencies>
+  </metadata>
+</package>
