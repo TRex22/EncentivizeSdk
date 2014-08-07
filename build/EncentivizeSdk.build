@@ -10,8 +10,14 @@
     <call target="Build" />
     <call target="CreateOutputFolder"/>
     <call target="CreateNugetPackage" />
+    <!--<call target="PushNugetPackage" />-->
   </target>
 
+  <target name="SqueakyClean" description="removes all generated files" workingdir="C:\Development\EncentivizeSDK\.." >
+    <exec program="..\Nant Squeaky Clean.bat">
+    </exec>
+  </target>
+  
   <target name="UnitTests">
     <nunit2>
       <formatter type="Plain" />
@@ -58,7 +64,7 @@
   <target name="CreateNugetPackage" >
     <exec program="..\.nuget\nuget.exe">
       <arg value="pack" />
-      <arg value="C:\Development\EncentivizeSDK\src\Entelect.Encentivize.Sdk\Entelect.Encentivize.Sdk.csproj" />
+      <arg value="..\src\Entelect.Encentivize.Sdk\Entelect.Encentivize.Sdk.csproj" />
       <arg value="-Prop" />
       <arg value="Configuration=${buildconfiguration}" />
       <arg value="-OutputDirectory" />
@@ -66,9 +72,12 @@
     </exec>
   </target>
 
-  <target name="SqueakyClean" description="removes all generated files" workingdir="C:\Development\EncentivizeSDK\.." >
-    <exec program="..\Nant Squeaky Clean.bat">
+  <target name="PushNugetPackage" >
+    <exec program="..\.nuget\nuget.exe">
+      <arg value="push" />
+      <arg value="-source" />
+      <arg value="..\Output\" />
     </exec>
-  </target>
+  </target>  
   
 </project>
