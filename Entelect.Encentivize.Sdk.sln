@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3A88C167-E095-493A-9811-FA428CF45B91}"
 	ProjectSection(SolutionItems) = preProject
 		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
+		build\EncentivizeSdk.build = build\EncentivizeSdk.build
 		MakeNugetPackage.cmd = MakeNugetPackage.cmd
 		Squeaky Clean.bat = Squeaky Clean.bat
 	EndProjectSection

@@ -1,0 +1,51 @@
+<project name="Encentivize Sdk" basedir=".">
+  <description>Encentivize Sdk</description>
+
+  <property name="Version" value="0.0.1" overwrite="false"/>
+  <property name="buildconfiguration" value="release" overwrite="false"/>
+
+  <target name="FullBuild" description="builds the code base">
+    <call target="version" />
+    <call target="build" />
+  </target>
+
+  <target name="UnitTests">
+    <nunit2>
+      <formatter type="Plain" />
+      <test assemblyname="..\src\Entelect.Encentivize.Sdk.UnitTests\bin\Release\Entelect.Encentivize.Sdk.UnitTests.dll"/>
+    </nunit2>
+  </target>
+  
+  <target name="version" description="Sets the version of the deploy in the common assembly info file">
+    <property name="commonAssemblyInfo" value="CommonAssemblyInfo.cs" />
+    <asminfo output="..\${commonAssemblyInfo}" language="CSharp">
+      <imports>
+        <import namespace="System" />
+        <import namespace="System.Reflection" />
+        <import namespace="System.Runtime.InteropServices" />
+      </imports>
+      <attributes>
+        <attribute type="ComVisibleAttribute" value="false" />
+        <attribute type="AssemblyCopyrightAttribute" value="Copyright 2012-2015" />
+        <attribute type="AssemblyProductAttribute" value="Encentivize Sdk" />
+        <attribute type="AssemblyCompanyAttribute" value="Entelect" />
+        <attribute type="AssemblyConfigurationAttribute" value="${buildconfiguration}" />
+        <attribute type="AssemblyInformationalVersionAttribute" value="${Version}" />
+        <attribute type="AssemblyVersionAttribute" value="${Version}" />
+        <attribute type="AssemblyFileVersionAttribute" value="${Version}" />
+      </attributes>
+      <references>
+        <include name="System.dll" />
+      </references>
+    </asminfo>
+  </target>
+
+  <target name="build" description="compiles the source code">
+    <exec program="C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\msbuild.exe">
+      <arg value="/p:Configuration=${buildconfiguration}" />
+      <arg value="/p:Platform=Any CPU" />
+      <arg value="..\Entelect.Encentivize.Sdk.sln" />
+    </exec>
+  </target>
+  
+</project>
