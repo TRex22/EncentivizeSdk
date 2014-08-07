@@ -5,6 +5,7 @@
   <property name="buildconfiguration" value="release" overwrite="false"/>
 
   <target name="FullBuild" description="builds the code base">
+    <call target="SqueakyClean" />
     <call target="Version" />
     <call target="Build" />
     <call target="CreateNugetPackage" />
@@ -55,6 +56,11 @@
       <arg value="C:\Development\EncentivizeSDK\src\Entelect.Encentivize.Sdk\Entelect.Encentivize.Sdk.csproj" />
       <arg value="-Prop" />
       <arg value="Configuration=${buildconfiguration}" />
+    </exec>
+  </target>
+
+  <target name="SqueakyClean" description="removes all generated files" workingdir="C:\Development\EncentivizeSDK\.." >
+    <exec program="..\Nant Squeaky Clean.bat">
     </exec>
   </target>
   
