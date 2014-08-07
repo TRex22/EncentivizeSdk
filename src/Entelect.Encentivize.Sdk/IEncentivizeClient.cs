@@ -15,14 +15,12 @@ namespace Entelect.Encentivize.Sdk
 
         void UpdateMember(MemberInput customer, long encentivizeMemberId);
 
-        //This update includes Earn/Burn properties
         void UpdateMember(MemberUpdate customer, long encentivizeMemberId);
         void AddMember(MemberInput customer);
         MemberAchievement AddAchievementForMember(long memberId, AchievementInput achievement);
         MemberAchievement AddAchievementForMember(Member member, AchievementInput achievement); 
 
-        PagedResult<Reward> GetAvailableRewardsForMember(long memberId);
-        void RedeemReward(long memberId, long rewardId, int rewardCount);
+        
 
         
         List<MemberGroup> GetGroups();
