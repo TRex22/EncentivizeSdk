@@ -1,6 +1,4 @@
-﻿using Entelect.Encentivize.Sdk.Dto;
-
-namespace Entelect.Encentivize.Sdk
+﻿namespace Entelect.Encentivize.Sdk.Points
 {
     public interface IPointsClient
     {

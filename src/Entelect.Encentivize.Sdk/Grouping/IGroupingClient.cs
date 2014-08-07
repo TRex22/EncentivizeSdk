@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Entelect.Encentivize.Sdk.Members;
 
-namespace Entelect.Encentivize.Sdk
+namespace Entelect.Encentivize.Sdk.Grouping
 {
     public interface IGroupingClient
     {

@@ -1,4 +1,4 @@
-namespace Entelect.Encentivize.Sdk
+namespace Entelect.Encentivize.Sdk.Rewards
 {
     public class RedeemRewardInput
     {

@@ -1,7 +1,8 @@
 ﻿using Entelect.Encentivize.Sdk.Exceptions;
+using Entelect.Encentivize.Sdk.Members;
 using RestSharp;
 
-namespace Entelect.Encentivize.Sdk
+namespace Entelect.Encentivize.Sdk.Achievements
 {
     public class AchievementClient: EncentivizeClientBase, IAchievementClient
     {

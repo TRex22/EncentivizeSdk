@@ -1,4 +1,6 @@
-﻿namespace Entelect.Encentivize.Sdk
+﻿using Entelect.Encentivize.Sdk.Members;
+
+namespace Entelect.Encentivize.Sdk.Achievements
 {
     public interface IAchievementClient
     {

@@ -1,7 +1,7 @@
 ﻿using Entelect.Encentivize.Sdk.Exceptions;
 using RestSharp;
 
-namespace Entelect.Encentivize.Sdk
+namespace Entelect.Encentivize.Sdk.Rewards
 {
     public class RewardClient : EncentivizeClientBase, IRewardClient
     {

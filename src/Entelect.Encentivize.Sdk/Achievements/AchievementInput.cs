@@ -1,6 +1,6 @@
 using System;
 
-namespace Entelect.Encentivize.Sdk
+namespace Entelect.Encentivize.Sdk.Achievements
 {
     public class AchievementInput
     {

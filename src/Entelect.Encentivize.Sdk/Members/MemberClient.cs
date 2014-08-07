@@ -1,11 +1,8 @@
-using System.Collections.Generic;
 using System.Linq;
-using RestSharp;
 using Entelect.Encentivize.Sdk.Exceptions;
-using Entelect.Encentivize.Sdk.Dto;
+using RestSharp;
 
-
-namespace Entelect.Encentivize.Sdk
+namespace Entelect.Encentivize.Sdk.Members
 {
     public class MemberClient : EncentivizeClientBase, IMemberClient
     {
@@ -13,6 +10,7 @@ namespace Entelect.Encentivize.Sdk
             :base(settings)
         {
         }
+
         public Member GetMemberByExternalReference(string externalReference)
         {
             var client = GetClient(); 

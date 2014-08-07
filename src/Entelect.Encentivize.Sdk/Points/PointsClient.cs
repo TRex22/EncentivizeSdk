@@ -1,8 +1,7 @@
-﻿using Entelect.Encentivize.Sdk.Dto;
-using Entelect.Encentivize.Sdk.Exceptions;
+﻿using Entelect.Encentivize.Sdk.Exceptions;
 using RestSharp;
 
-namespace Entelect.Encentivize.Sdk
+namespace Entelect.Encentivize.Sdk.Points
 {
     public class PointsClient : EncentivizeClientBase, IPointsClient
     {

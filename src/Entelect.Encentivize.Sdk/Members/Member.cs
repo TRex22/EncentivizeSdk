@@ -1,6 +1,6 @@
 using System;
 
-namespace Entelect.Encentivize.Sdk
+namespace Entelect.Encentivize.Sdk.Members
 {
     public class Member
     {
