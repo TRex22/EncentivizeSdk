@@ -7,15 +7,12 @@ using Entelect.Encentivize.Sdk.Dto;
 
 namespace Entelect.Encentivize.Sdk
 {
-    public class MemberClient : EncentivizeClientBase, IEncentivizeClient
+    public class MemberClient : EncentivizeClientBase, IMemberClient
     {
         public MemberClient(EncentivizeSettings settings)
             :base(settings)
         {
         }
-
-        #region Members
-
         public Member GetMemberByExternalReference(string externalReference)
         {
             var client = GetClient(); 
@@ -127,141 +124,5 @@ namespace Entelect.Encentivize.Sdk
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 throw new DataRetrievalFailedException(response.Content); 
         }
-
-        #endregion 
-
-        #region Groups
-
-        public List<MemberGroup> GetGroups()
-        {
-            var client = GetClient();
-            var request = new RestRequest("groups", Method.GET);
-            request.RequestFormat = DataFormat.Json;
-            var response = client.Execute<PagedResult<MemberGroup>>(request);
-            return response.Data.Data;
-        }
-
-        public MemberGroupDetails AddGroup(MemberGroup memberGroup)
-        {
-            var client = GetClient();
-            var request = new RestRequest("Groups", Method.POST);
-            request.RequestFormat = DataFormat.Json;
-
-            request.AddBody(memberGroup);
-            var response = client.Execute<MemberGroupDetails>(request);
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new CreationFailedException(response.Content);
-            return response.Data; 
-
-        }
-
-        public void UpdateGroup(MemberGroup memberGroup, int groupId)
-        {
-            var client = GetClient();
-            var request = new RestRequest("Groups/" + groupId, Method.PUT);
-            request.RequestFormat = DataFormat.Json;
-
-            request.AddBody(memberGroup);
-            var response = client.Execute(request);
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new UpdateFailedException(response.Content); 
-        }
-
-        public MemberGroup GetMemberGroup(int groupId)
-        {
-            var client = GetClient();
-            var request = new RestRequest(string.Format("groups/{0}",groupId), Method.GET);
-            request.RequestFormat = DataFormat.Json;
-            var response = client.Execute<PagedResult<MemberGroup>>(request);
-            return response.Data.Data.FirstOrDefault();
-        }
-
-        public void DeleteMemberGroup(int groupId)
-        {
-            var client = GetClient();
-            var request = new RestRequest("groups", Method.DELETE);
-            request.RequestFormat = DataFormat.Json;
-            var response = client.Execute<PagedResult<MemberGroup>>(request);
-        }
-
-        public List<Member> GetMembersInGroup(int groupId)
-        {
-            var client = GetClient();
-            var request = new RestRequest("groups", Method.GET);
-            request.AddParameter("externalReferenceCode", groupId);
-            request.RequestFormat = DataFormat.Json;
-            var response = client.Execute<PagedResult<Member>>(request);
-            return response.Data.Data;
-        }
-
-        public void AddMemberToGroup(MemberGroupInput memberGroupInput, int groupId)
-        {
-            var client = GetClient();
-            var request = new RestRequest("Groups/" + groupId + "/Members", Method.POST);
-            request.RequestFormat = DataFormat.Json;
-
-            request.AddBody(memberGroupInput);
-            var response = client.Execute(request);
-
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new CreationFailedException(response.Content); 
-        }
-
-        public void RemoveMemberFromGroup(int groupId, int memberId)
-        {
-
-        }
-
-        public void UpdateMemberRole(int groupId, int MemberId, MemberGroupRoles role)
-        {
-
-        }
-       
-        #endregion
-
-        public void AddAdhocPoints(long memberId, MemberAdhocInput adhocInput)
-        {
-            var client = GetClient(); 
-            var request = new RestRequest(string.Format("members/{0}/AdHocPoints",memberId), Method.POST);
-            request.RequestFormat = DataFormat.Json;
-
-            request.AddBody(adhocInput);
-            var response = client.Execute(request);
-
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new CreationFailedException(response.Content); 
-
-        }
-
-        #region Achievements
-
-        public MemberAchievement AddAchievementForMember(long memberId, AchievementInput achievement)
-        {
-            var client = GetClient(); 
-            var request = new RestRequest("members/" + memberId + "/achievements", Method.POST);
-            request.RequestFormat = DataFormat.Json;
-            request.AddBody(achievement);
-            var response = client.Execute<MemberAchievement>(request);
-
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new CreationFailedException(response.Content); 
-            return response.Data; 
-        }
-
-        public MemberAchievement AddAchievementForMember(Member member, AchievementInput achievement)
-        {
-            return AddAchievementForMember(member.MemberId, achievement);
-        }
-
-        #endregion
-
-        #region Rewards
-
-        
-
-        #endregion
     }
-
-
-
 }

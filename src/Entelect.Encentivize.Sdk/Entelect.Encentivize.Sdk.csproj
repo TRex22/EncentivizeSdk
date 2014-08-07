@@ -61,6 +61,11 @@
     <Compile Include="Dto\MemberType.cs" />
     <Compile Include="Dto\MemberUpdate.cs" />
     <Compile Include="Dto\PagedResult.cs" />
+    <Compile Include="AchievementClient.cs" />
+    <Compile Include="GroupingClient.cs" />
+    <Compile Include="IAchievementClient.cs" />
+    <Compile Include="IGroupingClient.cs" />
+    <Compile Include="IPointsClient.cs" />
     <Compile Include="IRewardClient.cs" />
     <Compile Include="MemberClient.cs" />
     <Compile Include="EncentivizeClientBase.cs" />
@@ -69,8 +74,9 @@
     <Compile Include="Exceptions\DataRetrievalFailedException.cs" />
     <Compile Include="Exceptions\EncentivizeApiException.cs" />
     <Compile Include="Exceptions\UpdateFailedException.cs" />
-    <Compile Include="IEncentivizeClient.cs" />
+    <Compile Include="IMemberClient.cs" />
     <Compile Include="Dto\MemberAchievement.cs" />
+    <Compile Include="PointsClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dto\RedeemRewardInput.cs" />
     <Compile Include="Dto\Reward.cs" />

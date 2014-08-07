@@ -9,6 +9,7 @@ namespace Entelect.Encentivize.Sdk
             : base(settings)
         {
         }
+
         public PagedResult<Reward> GetAvailableRewardsForMember(long memberId)
         {
             var client = GetClient();
