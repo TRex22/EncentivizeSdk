@@ -5,8 +5,9 @@
   <property name="buildconfiguration" value="release" overwrite="false"/>
 
   <target name="FullBuild" description="builds the code base">
-    <call target="version" />
-    <call target="build" />
+    <call target="Version" />
+    <call target="Build" />
+    <call target="CreateNugetPackage" />
   </target>
 
   <target name="UnitTests">
@@ -16,7 +17,7 @@
     </nunit2>
   </target>
   
-  <target name="version" description="Sets the version of the deploy in the common assembly info file">
+  <target name="Version" description="Sets the version of the deploy in the common assembly info file">
     <property name="commonAssemblyInfo" value="CommonAssemblyInfo.cs" />
     <asminfo output="..\${commonAssemblyInfo}" language="CSharp">
       <imports>
@@ -40,11 +41,20 @@
     </asminfo>
   </target>
 
-  <target name="build" description="compiles the source code">
+  <target name="Build" description="compiles the source code">
     <exec program="C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\msbuild.exe">
       <arg value="/p:Configuration=${buildconfiguration}" />
       <arg value="/p:Platform=Any CPU" />
       <arg value="..\Entelect.Encentivize.Sdk.sln" />
+    </exec>
+  </target>
+  
+  <target name="CreateNugetPackage" >
+    <exec program="..\.nuget\nuget.exe">
+      <arg value="pack" />
+      <arg value="C:\Development\EncentivizeSDK\src\Entelect.Encentivize.Sdk\Entelect.Encentivize.Sdk.csproj" />
+      <arg value="-Prop" />
+      <arg value="Configuration=${buildconfiguration}" />
     </exec>
   </target>
   
