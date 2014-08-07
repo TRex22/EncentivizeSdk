@@ -1,7 +1,7 @@
 <project name="Encentivize Sdk" basedir=".">
   <description>Encentivize Sdk</description>
 
-  <property name="Version" value="0.0.1" overwrite="false"/>
+  <property name="Version" value="0.0.2" overwrite="false"/>
   <property name="buildconfiguration" value="release" overwrite="false"/>
 
   <target name="FullBuild" description="builds the code base">
