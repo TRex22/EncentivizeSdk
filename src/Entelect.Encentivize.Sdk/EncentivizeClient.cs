@@ -1,32 +1,19 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RestSharp;
-using NLog;
 using Entelect.Encentivize.Sdk.Exceptions;
 using Entelect.Encentivize.Sdk.Dto;
 
 
 namespace Entelect.Encentivize.Sdk
 {
-
-    public class EncentivizeSettings
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string BaseUrl { get; set; }
-    }
-
     public class EncentivizeClient : IEncentivizeClient
     {
-
-        EncentivizeSettings _settings { get; set; }
-        Logger logger = LogManager.GetCurrentClassLogger();
+        EncentivizeSettings Settings { get; set; }
 
         public EncentivizeClient(EncentivizeSettings settings)
         {
-            _settings = settings;
+            Settings = settings;
         }
 
         #region Members
@@ -97,7 +84,7 @@ namespace Entelect.Encentivize.Sdk
             request.AddBody(member);
             var response = client.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content); 
+                throw new UpdateFailedException(response.Content); 
         }
 
         public void UpdateMember(MemberUpdate member, long encentivizeMemberId)
@@ -109,7 +96,7 @@ namespace Entelect.Encentivize.Sdk
             request.AddBody(member);
             var response = client.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content);
+                throw new UpdateFailedException(response.Content);
         }
 
         public void AddMember(MemberInput member)
@@ -122,7 +109,7 @@ namespace Entelect.Encentivize.Sdk
             var response = client.Execute(request);
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content); 
+                throw new CreationFailedException(response.Content); 
         }
 
         public Member GetMe()
@@ -142,7 +129,7 @@ namespace Entelect.Encentivize.Sdk
             request.RequestFormat = DataFormat.Json;
             var response = client.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content); 
+                throw new DataRetrievalFailedException(response.Content); 
         }
 
         #endregion 
@@ -169,7 +156,7 @@ namespace Entelect.Encentivize.Sdk
             request.AddBody(memberGroup);
             var response = client.Execute<MemberGroupDetails>(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content);
+                throw new CreationFailedException(response.Content);
             return response.Data; 
 
         }
@@ -183,7 +170,7 @@ namespace Entelect.Encentivize.Sdk
             request.AddBody(memberGroup);
             var response = client.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content); 
+                throw new UpdateFailedException(response.Content); 
         }
 
         public MemberGroup GetMemberGroup(int groupId)
@@ -224,7 +211,7 @@ namespace Entelect.Encentivize.Sdk
             var response = client.Execute(request);
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content); 
+                throw new CreationFailedException(response.Content); 
         }
 
         public void RemoveMemberFromGroup(int groupId, int memberId)
@@ -249,7 +236,7 @@ namespace Entelect.Encentivize.Sdk
             var response = client.Execute(request);
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content); 
+                throw new CreationFailedException(response.Content); 
 
         }
 
@@ -266,7 +253,7 @@ namespace Entelect.Encentivize.Sdk
             var response = client.Execute<MemberAchievement>(request);
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content); 
+                throw new CreationFailedException(response.Content); 
             return response.Data; 
         }
 
@@ -287,7 +274,7 @@ namespace Entelect.Encentivize.Sdk
             var response = client.Execute<PagedResult<Reward>>(request);
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content);
+                throw new DataRetrievalFailedException(response.Content);
             return response.Data; 
         }
 
@@ -305,7 +292,7 @@ namespace Entelect.Encentivize.Sdk
             request.AddBody(rewardInput);
             var response = client.Execute(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                throw new EncentivizeException(response.Content);
+                throw new CreationFailedException(response.Content);
 
         }
 
@@ -313,8 +300,8 @@ namespace Entelect.Encentivize.Sdk
 
         private RestClient GetClient()
         {
-            var client = new RestClient(_settings.BaseUrl);
-            client.Authenticator = new HttpBasicAuthenticator(_settings.Username, _settings.Password);
+            var client = new RestClient(Settings.BaseUrl);
+            client.Authenticator = new HttpBasicAuthenticator(Settings.Username, Settings.Password);
             return client;
         }
     }
