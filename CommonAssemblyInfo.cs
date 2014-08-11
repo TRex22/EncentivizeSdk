@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -16,7 +17,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProductAttribute("Encentivize Sdk")]
 [assembly: AssemblyCompanyAttribute("Entelect")]
 [assembly: AssemblyConfigurationAttribute("release")]
-[assembly: AssemblyInformationalVersionAttribute("0.0.1")]
-[assembly: AssemblyVersionAttribute("0.0.1")]
-[assembly: AssemblyFileVersionAttribute("0.0.1")]
+[assembly: AssemblyInformationalVersionAttribute("0.0.3")]
+[assembly: AssemblyVersionAttribute("0.0.3")]
+[assembly: AssemblyFileVersionAttribute("0.0.3")]
 
